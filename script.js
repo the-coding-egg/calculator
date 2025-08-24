@@ -14,9 +14,26 @@ function divide(x, y) {
   return x / y;
 }
 
-const firstNumber = x;
-const secondNumber = y;
-const operator = "*";
+const display = document.querySelector(".display");
+const numbers = document.querySelectorAll(".number");
+
+let firstNumber = "";
+numbers.forEach((number) => {
+  number.addEventListener("click", () => {
+    firstNumber = parseInt(number.innerText);
+    display.innerText = firstNumber;
+  });
+});
+
+let secondNumber = "";
+numbers.forEach((number) => {
+  number.addEventListener("click", () => {
+    secondNumber = parseInt(number.innerText);
+    console.log(secondNumber);
+  });
+});
+
+let operator = "";
 
 function operate(firstNumber, secondNumber, operator) {
   switch (operator) {
