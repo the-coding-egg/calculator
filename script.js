@@ -20,6 +20,10 @@ const operators = document.querySelectorAll(".operator");
 const pressedButton = document.querySelectorAll("button");
 let currentDisplay = "";
 
+let firstNumber = 0;
+let secondNumber = '';
+let operator = undefined;
+
 function buttonPress() {
   displayLastPress(currentDisplay);
   pressedButton.forEach((button) => {
@@ -28,11 +32,17 @@ function buttonPress() {
         currentDisplay += button.innerText;
         displayLastPress(currentDisplay);
       } else if (button.classList.contains("operator")) {
-        getFirstNumber();
+        firstNumber = parseInt(currentDisplay);
+        console.log(firstNumber);
 
         currentDisplay = "";
         currentDisplay += button.innerText;
         displayLastPress(currentDisplay);
+
+        operator = currentDisplay;
+        console.log(operator);
+        currentDisplay = "";
+
       }
     });
   });
@@ -60,17 +70,16 @@ function getSecondNumber() {
   });
 }
 
-// function getOperator() {
-//   currentDisplay += operators.innerText;
-//   displayLastPress(currentDisplay);
-// }
+function getOperator() {
+  return currentDisplay;
+}
 
 function displayLastPress(content) {
   display.innerText = content;
 }
 
 function operate(firstNumber, secondNumber, operator) {
-  firstNumber = getFirstNumber();
+  // firstNumber = getFirstNumber();
   secondNumber = getSecondNumber();
   // operator = getOperator();
 
