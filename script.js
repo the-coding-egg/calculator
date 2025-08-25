@@ -23,7 +23,7 @@ let currentDisplay = "";
 let firstNumber = 0;
 let secondNumber = '';
 let operator = undefined;
-
+//number test
 function buttonPress() {
   displayLastPress(currentDisplay);
   pressedButton.forEach((button) => {
