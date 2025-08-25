@@ -23,15 +23,14 @@ let currentDisplay = "";
 let firstNumber = 0;
 let secondNumber = '';
 let operator = undefined;
-//number test
+
 function buttonPress() {
   displayLastPress(currentDisplay);
   pressedButton.forEach((button) => {
     button.addEventListener("click", () => {
-      if (button.classList.contains("number")) {
-        currentDisplay += button.innerText;
-        displayLastPress(currentDisplay);
-      } else if (button.classList.contains("operator")) {
+      currentDisplay += button.innerText;
+      displayLastPress(currentDisplay);
+      if (button.classList.contains("operator")) {
         firstNumber = parseInt(currentDisplay);
         console.log(firstNumber);
 
