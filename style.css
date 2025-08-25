@@ -2,6 +2,10 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+h1 {
+  text-align: center;
+}
+
 .calculator {
   background-color: lightblue;
   text-align: center;
@@ -11,6 +15,8 @@ body {
   background-color: lightgray;
   font-size: 24px;
   font-weight: bold;
+  height: 40px;
+
 }
 
 button {
