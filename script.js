@@ -11,76 +11,57 @@ function multiply(x, y) {
 }
 
 function divide(x, y) {
-  return x / y;
+  return y === 0 ? "Error" : x / y;
 }
 
-let display = document.querySelector(".display");
-const numbers = document.querySelectorAll(".number");
-const operators = document.querySelectorAll(".operator");
+const display = document.querySelector(".display");
 const pressedButton = document.querySelectorAll("button");
-let currentDisplay = "";
 
-let firstNumber = 0;
-let secondNumber = '';
-let operator = undefined;
+let firstNumber = "";
+let secondNumber = "";
+let currentOperator = null;
 
-function buttonPress() {
-  displayLastPress(currentDisplay);
-  pressedButton.forEach((button) => {
-    button.addEventListener("click", () => {
-      currentDisplay += button.innerText;
-      displayLastPress(currentDisplay);
-      if (button.classList.contains("operator")) {
-        firstNumber = parseInt(currentDisplay);
-        console.log(firstNumber);
-
-        currentDisplay = "";
-        currentDisplay += button.innerText;
-        displayLastPress(currentDisplay);
-
-        operator = currentDisplay;
-        console.log(operator);
-        currentDisplay = "";
-
-      }
-    });
+//listen for the button presses and execute what function 
+//based off the button press
+pressedButton.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (button.classList.contains("number")) {
+      handleNumber(button.innerText);
+    } else if (button.classList.contains("operator")) {
+      handleOperator(button.innerText);
+    } else if (button.classList.contains("equals")) {
+      handleEquals();
+    } else if (button.classList.contains("clearButton")) {
+      clearAll();
+    }
   });
+});
+
+//get the first number
+//need to handle the ability of it being zero or multiple decimals
+function handleNumber(num) {
+  display.innerText += num;
 }
 
-buttonPress();
-
-function getFirstNumber() {
-  let firstNumber = parseInt(currentDisplay);
-  if (isNaN(firstNumber)) {
-    console.log("Please enter a valid number");
-  } else {
-    console.log(firstNumber);
-    return firstNumber;
-  }
+// if operator is chosen, save first number and then save operator
+function handleOperator(operator) {
+  firstNumber = parseInt(display.innerText);
 }
 
-function getSecondNumber() {
-  let secondNumber = "";
-  numbers.forEach((number) => {
-    number.addEventListener("click", () => {
-      secondNumber = parseInt(number.innerText);
-      return secondNumber;
-    });
-  });
+// when equals is pressed, do the calculation
+function handleEquals() {
 }
 
-function getOperator() {
-  return currentDisplay;
+// clear the calculator
+function clearAll() {
+  display.innerText = "";
+  firstNumber = "";
+  secondNumber = "";
+  currentOperator = null;
 }
 
-function displayLastPress(content) {
-  display.innerText = content;
-}
 
 function operate(firstNumber, secondNumber, operator) {
-  // firstNumber = getFirstNumber();
-  secondNumber = getSecondNumber();
-  // operator = getOperator();
 
   switch (operator) {
     case "+":
@@ -91,5 +72,7 @@ function operate(firstNumber, secondNumber, operator) {
       return multiply(firstNumber, secondNumber);
     case "/":
       return divide(firstNumber, secondNumber);
+    default:
+      return null;
   }
 }
