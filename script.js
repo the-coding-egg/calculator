@@ -11,7 +11,7 @@ function multiply(x, y) {
 }
 
 function divide(x, y) {
-  return y === 0 ? "Error" : x / y;
+  return y === 0 ? display.innerText = "Error" : x / y;
 }
 
 const display = document.querySelector(".display");
@@ -40,8 +40,12 @@ pressedButton.forEach((button) => {
 //get the first number
 //need to handle the ability of it being zero or multiple decimals
 function handleNumber(num) {
-  if (num === "0") {
-    display.innerText = "";
+  if (num === "0" && display.innerText === "") {
+    display.innerText = "0";
+  } else if (num === "0" && display.innerText === "0") {
+    display.innerText = "0";
+  } else if (num !== "0" && display.innerText === "0") {
+    display.innerText = num;
   } else {
     display.innerText += num;
   }
