@@ -30,7 +30,7 @@ pressedButton.forEach((button) => {
     } else if (button.classList.contains("operator")) {
       handleOperator(button.innerText);
     } else if (button.classList.contains("equals")) {
-      handleEquals();
+      calculate();
     } else if (button.classList.contains("clearButton")) {
       clearAll();
     }
@@ -40,16 +40,36 @@ pressedButton.forEach((button) => {
 //get the first number
 //need to handle the ability of it being zero or multiple decimals
 function handleNumber(num) {
-  display.innerText += num;
+  if (num === "0") {
+    display.innerText = "";
+  } else {
+    display.innerText += num;
+  }
 }
 
 // if operator is chosen, save first number and then save operator
-function handleOperator(operator) {
-  firstNumber = parseInt(display.innerText);
+function handleOperator(op) {
+  if (display.innerText !== "" && currentOperator === null) {
+    firstNumber = Number(display.innerText);
+    currentOperator = op;
+    display.innerText = "";
+
+    if (firstNumber !== "" && currentOperator !== null) {
+      calculate();
+    }
+
+  }
 }
 
 // when equals is pressed, do the calculation
-function handleEquals() {
+function calculate() {
+  if (display.innerText !== "") {
+    secondNumber = Number(display.innerText);
+
+    console.log(firstNumber, secondNumber, currentOperator);
+
+    operate(firstNumber, secondNumber, currentOperator);
+  }
 }
 
 // clear the calculator
@@ -65,13 +85,17 @@ function operate(firstNumber, secondNumber, operator) {
 
   switch (operator) {
     case "+":
-      return add(firstNumber, secondNumber);
+      display.innerText = add(firstNumber, secondNumber);
+      break;
     case "-":
-      return subtract(firstNumber, secondNumber);
+      display.innerText = subtract(firstNumber, secondNumber);
+      break;
     case "*":
-      return multiply(firstNumber, secondNumber);
+      display.innerText = multiply(firstNumber, secondNumber);
+      break;
     case "/":
-      return divide(firstNumber, secondNumber);
+      display.innerText = divide(firstNumber, secondNumber);
+      break;
     default:
       return null;
   }
