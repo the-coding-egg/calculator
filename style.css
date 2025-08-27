@@ -9,17 +9,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #b3dce9;
+  background-color: #222834;
   flex-direction: column;
 }
 
-h1 {
+h2 {
   text-align: center;
-  color: #232E38;
+  color: #EB9C59;
+  font-size: 30px;
 }
 
 .calculator {
-  background: #f2f2f2;
+  background: #62B1D8;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,7 +30,7 @@ h1 {
 }
 
 .display {
-  background-color: #e6e6e6;
+  background-color: #DABBF9;
   font-size: 24px;
   font-weight: bold;
   padding: 10px;
@@ -37,7 +38,7 @@ h1 {
   width: 100%;
   height: 50px;
   text-align: right;
-  border: 1px solid #ccc;
+  border: 1px solid #827095;
   box-sizing: border-box;
   margin-bottom: 10px;
 }
@@ -48,7 +49,8 @@ button {
   font-weight: bold;
   font-size: 18px;
   border: none;
-  background-color: #fff;
+  color: #393142;
+  background-color: #74D1FF;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: background-color 0.2s;
@@ -62,12 +64,12 @@ button:hover {
 
 .clearButton {
   margin-top: 8px;
-  background-color: #ff7b7b;
+  background-color: #EB9C59;
   color: white;
 }
 
 .clearButton:hover {
-  background-color: #ff4d4d;
+  background-color: #D27B56;
 }
 
 .topRow,

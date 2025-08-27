@@ -34,6 +34,8 @@ pressedButton.forEach((button) => {
       calculate();
     } else if (button.classList.contains("clearButton")) {
       clearAll();
+    } else if (button.classList.contains("undo")) {
+      undoLast();
     }
   });
 });
@@ -53,6 +55,14 @@ function handleNumber(num) {
   }
 }
 
+function undoLast() {
+  let currentText = display.innerText;
+  if (currentText.length > 1) {
+    display.innerText = currentText.slice(0, -1);
+  } else {
+    display.innerText = "";
+  }
+}
 // if operator is chosen, save first number and then save operator
 function handleOperator(op) {
   if (currentOperator !== null && !resetDisplay) {
