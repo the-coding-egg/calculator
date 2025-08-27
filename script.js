@@ -11,7 +11,11 @@ function multiply(x, y) {
 }
 
 function divide(x, y) {
-  return y === 0 ? display.innerText = "Error" : x / y;
+  if (y === 0) {
+    return NaN;
+  } else {
+    return x / y;
+  }
 }
 
 const display = document.querySelector(".display");
@@ -36,6 +40,8 @@ pressedButton.forEach((button) => {
       clearAll();
     } else if (button.classList.contains("undo")) {
       undoLast();
+    } else if (button.classList.contains("egg")) {
+      egg();
     }
   });
 });
@@ -118,4 +124,9 @@ function operate(firstNumber, secondNumber, operator) {
     default:
       return null;
   }
+}
+
+function egg() {
+  display.innerText = "Egg";
+  resetDisplay = true;
 }
