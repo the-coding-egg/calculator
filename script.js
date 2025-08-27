@@ -46,6 +46,8 @@ function handleNumber(num) {
     resetDisplay = false;
   } else if (display.innerText === "0") {
     display.innerText = num;
+  } else if (display.innerText.includes(".") && num === ".") {
+    return;
   } else {
     display.innerText += num;
   }
