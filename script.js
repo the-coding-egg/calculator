@@ -1,23 +1,4 @@
-function add(x, y) {
-  return x + y;
-}
-
-function subtract(x, y) {
-  return x - y;
-}
-
-function multiply(x, y) {
-  return x * y;
-}
-
-function divide(x, y) {
-  if (y === 0) {
-    return NaN;
-  } else {
-    return x / y;
-  }
-}
-
+// add the ability to grab the certain classes
 const display = document.querySelector(".display");
 const pressedButton = document.querySelectorAll("button");
 
@@ -61,6 +42,7 @@ function handleNumber(num) {
   }
 }
 
+// create the ability to undo the last input
 function undoLast() {
   let currentText = display.innerText;
   if (currentText.length > 1) {
@@ -69,6 +51,7 @@ function undoLast() {
     display.innerText = "";
   }
 }
+
 // if operator is chosen, save first number and then save operator
 function handleOperator(op) {
   if (currentOperator !== null && !resetDisplay) {
@@ -84,9 +67,6 @@ function handleOperator(op) {
 function calculate() {
   if (display.innerText !== "") {
     secondNumber = Number(display.innerText);
-
-    console.log(firstNumber, secondNumber, currentOperator);
-
     const result = operate(firstNumber, secondNumber, currentOperator);
     if (result !== null) {
       display.innerText = roundDecimal(result);
@@ -97,6 +77,7 @@ function calculate() {
   }
 }
 
+// round any big decimals
 function roundDecimal(num) {
   return Math.round(num * 100000) / 100000
 }
@@ -109,9 +90,8 @@ function clearAll() {
   currentOperator = null;
 }
 
-
+// execute specific operate functions
 function operate(firstNumber, secondNumber, operator) {
-
   switch (operator) {
     case "+":
       return add(firstNumber, secondNumber);
@@ -126,6 +106,28 @@ function operate(firstNumber, secondNumber, operator) {
   }
 }
 
+// all the operation functions
+function add(x, y) {
+  return x + y;
+}
+
+function subtract(x, y) {
+  return x - y;
+}
+
+function multiply(x, y) {
+  return x * y;
+}
+
+function divide(x, y) {
+  if (y === 0) {
+    return NaN;
+  } else {
+    return x / y;
+  }
+}
+
+//something fun to end with
 function egg() {
   display.innerText = "Egg";
   resetDisplay = true;
