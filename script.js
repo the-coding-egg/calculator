@@ -20,6 +20,7 @@ const pressedButton = document.querySelectorAll("button");
 let firstNumber = "";
 let secondNumber = "";
 let currentOperator = null;
+let resetDisplay = false;
 
 //listen for the button presses and execute what function 
 //based off the button press
@@ -40,11 +41,10 @@ pressedButton.forEach((button) => {
 //get the first number
 //need to handle the ability of it being zero or multiple decimals
 function handleNumber(num) {
-  if (num === "0" && display.innerText === "") {
-    display.innerText = "0";
-  } else if (num === "0" && display.innerText === "0") {
-    display.innerText = "0";
-  } else if (num !== "0" && display.innerText === "0") {
+  if (resetDisplay) {
+    display.innerText = num;
+    resetDisplay = false;
+  } else if (display.innerText === "0") {
     display.innerText = num;
   } else {
     display.innerText += num;
@@ -53,16 +53,13 @@ function handleNumber(num) {
 
 // if operator is chosen, save first number and then save operator
 function handleOperator(op) {
-  if (display.innerText !== "" && currentOperator === null) {
-    firstNumber = Number(display.innerText);
-    currentOperator = op;
-    display.innerText = "";
-
-    if (firstNumber !== "" && currentOperator !== null) {
-      calculate();
-    }
-
+  if (currentOperator !== null && !resetDisplay) {
+    calculate();
   }
+
+  firstNumber = Number(display.innerText);
+  currentOperator = op;
+  resetDisplay = true;
 }
 
 // when equals is pressed, do the calculation
@@ -72,8 +69,18 @@ function calculate() {
 
     console.log(firstNumber, secondNumber, currentOperator);
 
-    operate(firstNumber, secondNumber, currentOperator);
+    const result = operate(firstNumber, secondNumber, currentOperator);
+    if (result !== null) {
+      display.innerText = roundDecimal(result);
+      firstNumber = result;
+      currentOperator = null;
+      resetDisplay = true;
+    }
   }
+}
+
+function roundDecimal(num) {
+  return Math.round(num * 100000) / 100000
 }
 
 // clear the calculator
@@ -89,17 +96,13 @@ function operate(firstNumber, secondNumber, operator) {
 
   switch (operator) {
     case "+":
-      display.innerText = add(firstNumber, secondNumber);
-      break;
+      return add(firstNumber, secondNumber);
     case "-":
-      display.innerText = subtract(firstNumber, secondNumber);
-      break;
+      return subtract(firstNumber, secondNumber);
     case "*":
-      display.innerText = multiply(firstNumber, secondNumber);
-      break;
+      return multiply(firstNumber, secondNumber);
     case "/":
-      display.innerText = divide(firstNumber, secondNumber);
-      break;
+      return divide(firstNumber, secondNumber);
     default:
       return null;
   }
