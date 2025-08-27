@@ -20,7 +20,7 @@ h2 {
 }
 
 .calculator {
-  background: #62B1D8;
+  background: #9fcfe6;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,7 +30,7 @@ h2 {
 }
 
 .display {
-  background-color: #DABBF9;
+  background-color: #ffdac5;
   font-size: 24px;
   font-weight: bold;
   padding: 10px;
@@ -38,7 +38,7 @@ h2 {
   width: 100%;
   height: 50px;
   text-align: right;
-  border: 1px solid #827095;
+  border: 1px solid #a76b49;
   box-sizing: border-box;
   margin-bottom: 10px;
 }
@@ -49,8 +49,8 @@ button {
   font-weight: bold;
   font-size: 18px;
   border: none;
-  color: #393142;
-  background-color: #74D1FF;
+  color: #222834;
+  background-color: #b0e5ff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: background-color 0.2s;
@@ -59,17 +59,17 @@ button {
 }
 
 button:hover {
-  background-color: #d0eaff;
+  background-color: #ddb0ff;
 }
 
 .clearButton {
   margin-top: 8px;
-  background-color: #EB9C59;
-  color: white;
+  background-color: #ffdac5;
+  color: #222834;
 }
 
 .clearButton:hover {
-  background-color: #D27B56;
+  background-color: #EB9C59;
 }
 
 .topRow,
